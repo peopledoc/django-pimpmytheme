@@ -1,7 +1,8 @@
 Custom Theme
 ============
-[![Travis](https://travis-ci.org/novapost/django-pimpmytheme.png?branch=master)](https://travis-ci.org/novapost/django-pimpmytheme)
 
+.. image:: https://travis-ci.org/novapost/django-pimpmytheme.png?branch=master
+    :target: https://travis-ci.org/novapost/django-pimpmytheme
 Per client/user/whatever django template and statics theming
 
 WHY
