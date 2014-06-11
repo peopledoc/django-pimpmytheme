@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+<head>
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet"
+      href="{{STATIC_URL}}{{site.name}}/static/css/custom.less"
+      charset="utf-8" />
+{% endcompress %}
+</head>
+
+<body>
+  <h1>Hello World</h1>
+</body>
