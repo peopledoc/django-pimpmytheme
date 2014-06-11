@@ -1,5 +1,6 @@
 Custom Theme
 ============
+[![Travis](https://travis-ci.org/novapost/django-pimpmytheme.png?branch=master)](https://travis-ci.org/novapost/django-pimpmytheme)
 
 Per client/user/whatever django template and statics theming
 
@@ -80,3 +81,9 @@ some custom templates in it.
 the pimpmytheme template loader will first look in this directory to
 load templates files. If not found, it will fallback on the django
 template loader
+
+NOTE
+====
+
+thanks to https://github.com/leotrouvtou for helping finding the
+project name
