@@ -7,9 +7,7 @@ from django.conf import settings
 module_string = '.'.join(
     settings.CUSTOM_THEME_LOOKUP_OBJECT.split('.')[:-1])
 klass_string = settings.CUSTOM_THEME_LOOKUP_OBJECT.split('.')[-1]
-module = importlib.import_module(
-    module_string, [klass_string])
-klass = getattr(module, klass_string)
+klass = getattr(importlib.import_module(module_string), klass_string)
 
 
 @receiver(post_save, sender=klass)

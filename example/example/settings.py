@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'custom_theme',
+    'pimpmytheme',
     'subapp',
     'compressor',
     'django_nose'
@@ -87,11 +87,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 
-STATIC_ROOT = "/home/yohann/Dev/people_custom_theme/example/static/"
+STATIC_ROOT = "/home/yohann/Dev/people_pimpmytheme/example/static/"
 STATIC_URL = '/static/'
 from django.conf import global_settings
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    "custom_theme.context_processors.get_site",
+    "pimpmytheme.context_processors.get_site",
 )
 
 SITE_ID = 1
@@ -105,19 +105,19 @@ STATICFILES_FINDERS = (
 COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
 
 TEMPLATE_LOADERS = (
-    'custom_theme.template_loader.Loader',
+    'pimpmytheme.template_loader.Loader',
     'django.template.loaders.app_directories.Loader',
     )
 
 STATICFILES_FINDERS = (
-    "custom_theme.static_finder.CustomFinder",
+    "pimpmytheme.static_finder.CustomFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     "compressor.finders.CompressorFinder"
     )
 
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=custom_theme',
+    '--cover-package=pimpmytheme',
     '--verbosity=3',
     '--nocapture'
     ]

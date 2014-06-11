@@ -6,7 +6,7 @@ from django.utils._os import safe_join
 from django.conf import settings
 
 
-mod = import_module("custom_theme")
+mod = import_module("pimpmytheme")
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
@@ -14,12 +14,11 @@ class Loader(Loader):
     is_usable = True
 
     def get_template_sources(self, template_name, template_dirs=None):
+
         module_string = '.'.join(
             settings.CUSTOM_THEME_LOOKUP_OBJECT.split('.')[:-1])
         klass_string = settings.CUSTOM_THEME_LOOKUP_OBJECT.split('.')[-1]
-        module = importlib.import_module(
-            module_string, [klass_string])
-        klass = getattr(module, klass_string)
+        klass = getattr(importlib.import_module(module_string), klass_string)
         lookup = klass.objects.get_current()
 
         if not template_dirs:

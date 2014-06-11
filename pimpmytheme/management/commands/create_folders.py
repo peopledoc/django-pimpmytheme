@@ -1,7 +1,7 @@
 import importlib
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from custom_theme.folder_management import create_folders
+from pimpmytheme.folder_management import create_folders
 
 
 class Command(BaseCommand):

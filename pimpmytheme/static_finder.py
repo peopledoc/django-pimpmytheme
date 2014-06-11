@@ -21,12 +21,11 @@ class CustomStaticStorage(FileSystemStorage):
         Returns a static file storage if available in the given app.
         """
         # app is the actual app module
+
         module_string = '.'.join(
             settings.CUSTOM_THEME_LOOKUP_OBJECT.split('.')[:-1])
         klass_string = settings.CUSTOM_THEME_LOOKUP_OBJECT.split('.')[-1]
-        module = importlib.import_module(
-            module_string, [klass_string])
-        klass = getattr(module, klass_string)
+        klass = getattr(importlib.import_module(module_string), klass_string)
         lookup = klass.objects.get_current()
         mod = import_module(app)
         mod_path = os.path.dirname(upath(mod.__file__))

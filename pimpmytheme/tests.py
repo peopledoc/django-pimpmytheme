@@ -16,11 +16,11 @@ class SiteTestCase(TestCase):
         Site.objects.create(name="something",
                             domain="something.com")
         DIR = os.path.dirname(os.path.dirname(__file__))
-        current_dir = os.path.join(DIR, "custom_theme", project_name,
+        current_dir = os.path.join(DIR, "pimpmytheme", project_name,
                                    "something", "static", "css")
         self.assertTrue(os.path.exists(current_dir))
         custom_less = os.path.join(current_dir, "custom.less")
         self.assertTrue(os.path.exists(custom_less))
-        shutil.rmtree(os.path.join(DIR, "custom_theme",
+        shutil.rmtree(os.path.join(DIR, "pimpmytheme",
                                    project_name, "something"))
         self.assertFalse(os.path.exists(current_dir))

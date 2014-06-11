@@ -3,7 +3,7 @@ from django.utils.importlib import import_module
 from django.conf import settings
 from django.core.management import call_command
 
-mod = import_module("custom_theme")
+mod = import_module("pimpmytheme")
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
