@@ -27,7 +27,7 @@ for the current object.
 INSTALLATION
 ============
 
-    >>> pip install custom_form
+    >>> pip install pimpmytheme
 
 CONFIGURATION
 =============
