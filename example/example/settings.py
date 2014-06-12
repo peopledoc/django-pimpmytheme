@@ -87,7 +87,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 
-STATIC_ROOT = "/home/yohann/Dev/people_pimpmytheme/example/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "example", "static")
 STATIC_URL = '/static/'
 from django.conf import global_settings
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
