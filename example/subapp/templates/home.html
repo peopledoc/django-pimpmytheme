@@ -1,13 +1,19 @@
-{% extends "base.html" %}
+{% load pimptheme %}
 <head>
 {% load compress %}
+
 {% compress css %}
-<link rel="stylesheet"
-      href="{{STATIC_URL}}{{site.name}}/static/css/custom.less"
-      charset="utf-8" />
+{% pimp_css 'custom.less'%}
+{% pimp_css 'hello.css'%}
 {% endcompress %}
+
+{% pimp_css 'hello.css'%}
+
 </head>
 
 <body>
   <h1>Hello World</h1>
+{% pimp_img 'hello.jpg'%}
+<a href="#" id="clickme">Click Me</a>
+{% pimp_js 'hello.js'%}
 </body>
