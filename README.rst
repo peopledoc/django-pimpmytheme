@@ -29,7 +29,7 @@ for the current object.
 INSTALLATION
 ============
 
-    >>> pip install pimpmytheme
+    >>> pip install django-pimpmytheme
 
 CONFIGURATION
 =============
