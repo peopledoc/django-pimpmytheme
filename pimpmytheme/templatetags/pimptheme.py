@@ -3,28 +3,32 @@ from django.conf import settings
 from pimpmytheme.utils import get_lookup_class
 from django.utils.safestring import mark_safe
 from django.contrib.staticfiles import finders
+from django.templatetags.static import static
 register = template.Library()
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
 def pimp(context, file_type, filename=None):
+
     if filename is None:
         filename = ""
     lookup = get_lookup_class().objects.get_current()
     url = "/".join(
         [getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
          "static", file_type])
-    url = "".join([context["STATIC_URL"], url, "/", filename])
+    url = static("".join([url, "/", filename]))
     return url
 
 
 @register.simple_tag(takes_context=True)
-def pimp_css(context, filename=None):
+def pimp_css(context, filename=None, css_type=None):
+    if css_type is None:
+        css_type = "css"
     if pimp_exists(context, "css", filename=filename) is None:
         return ""
     else:
-        return mark_safe("""<link rel="stylesheet" href="{}" type="text/css"
-        media="screen" />""".format(pimp(context, "css", filename)))
+        return mark_safe("""<link rel="stylesheet" href="{}" type="text/{}"
+        media="screen" />""".format(pimp(context, "css", filename), css_type))
 
 
 @register.simple_tag(takes_context=True)
