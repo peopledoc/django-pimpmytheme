@@ -1,11 +1,9 @@
 import os
 from django.contrib.staticfiles.finders import AppDirectoriesFinder
 from django.core.files.storage import FileSystemStorage
-from django.utils.importlib import import_module
-from django.utils._os import upath
 from django.conf import settings
 
-
+BASE_FOLDER = settings.PIMPMYTHEME_FOLDER
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
@@ -22,11 +20,8 @@ class CustomStaticStorage(FileSystemStorage):
         Returns a static file storage if available in the given app.
         """
         # app is the actual app module
-
-        mod = import_module(app)
-        mod_path = os.path.dirname(upath(mod.__file__))
         location = os.path.join(
-            mod_path, project_name
+            BASE_FOLDER, project_name
             )
         super(CustomStaticStorage, self).__init__(location, *args, **kwargs)
 

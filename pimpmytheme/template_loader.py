@@ -1,12 +1,9 @@
 import os
 from django.template.loaders.app_directories import Loader
-from django.utils.importlib import import_module
 from django.utils._os import safe_join
 from django.conf import settings
 from .utils import get_lookup_class
-
-
-mod = import_module("pimpmytheme")
+BASE_FOLDER = settings.PIMPMYTHEME_FOLDER
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
@@ -19,7 +16,7 @@ class Loader(Loader):
 
         if not template_dirs:
             template_dir = os.path.join(
-                os.path.dirname(mod.__file__),
+                BASE_FOLDER,
                 project_name,
                 getattr(lookup,
                         settings.CUSTOM_THEME_LOOKUP_ATTR),

@@ -1,13 +1,12 @@
 import os
-from django.utils.importlib import import_module
 from django.conf import settings
 
-mod = import_module("pimpmytheme")
+BASE_FOLDER = settings.PIMPMYTHEME_FOLDER
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
 def create_folders(instance):
-    curent_dir = os.path.join(os.path.dirname(mod.__file__), project_name,
+    curent_dir = os.path.join(BASE_FOLDER, project_name,
                               getattr(instance,
                                       settings.CUSTOM_THEME_LOOKUP_ATTR),
                               "static", "css")

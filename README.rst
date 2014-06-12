@@ -62,6 +62,13 @@ per a site basis:
     CUSTOM_THEME_LOOKUP_OBJECT = "django.contrib.sites.models.Site"
     CUSTOM_THEME_LOOKUP_ATTR = "name"
 
+then select the directory wher your customizations will be stored:
+
+    PIMPMYTHEME_FOLDER = "/home/user/myproject/custom_statics"
+
+this must be an absolute path
+
+
 To create the needed folders for customization, you can run the
 management command provided by pimpmytheme:
 
