@@ -17,7 +17,7 @@ def read_relative_file(filename):
     with open(join(dirname(abspath(__file__)), filename)) as f:
         return f.read()
 
-NAME = 'pimpmytheme'
+NAME = 'django-pimpmytheme'
 DESCRIPTION = """Customise theme (css and template) on a per
 user/client/whatever basis"""
 REQUIREMENTS = [
