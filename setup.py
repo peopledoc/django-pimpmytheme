@@ -24,7 +24,7 @@ REQUIREMENTS = [
     'django',
     'django-compressor',
 ]
-__VERSION__ = '1.2'
+__VERSION__ = '1.3'
 
 params = dict(
     name=NAME,
