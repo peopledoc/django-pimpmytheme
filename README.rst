@@ -83,6 +83,30 @@ the pimpmytheme template loader will first look in this directory to
 load templates files. If not found, it will fallback on the django
 template loader
 
+TEMPLATETAG SYSTEM
+==================
+
+With django-pimpmytheme you get a templatetag system to manage custom
+media (css, js and images).
+
+This template system ensure the custom media exist for the current
+customization. You can so get a bunch of css/js/img for each of your
+client and django-pimpmytheme will only load the media revelant for
+the current customization.
+
+You can then use an asset management, compressor and so on on those
+files.
+
+To use the templatetags first load it on the template:
+
+    {% load pimptheme %}
+
+Then use pimp_css, pimp_js or pimp_img to load your assets :
+
+    {% pimp_css 'custom.css'%}
+    {% pimp_js 'javascript.js'%}
+    {% pimp_img 'myimage.jpg'%}
+
 NOTE
 ====
 

@@ -4,7 +4,6 @@ from pimpmytheme.utils import get_lookup_class
 from django.utils.safestring import mark_safe
 from django.contrib.staticfiles import finders
 register = template.Library()
-#mod = import_module("pimpmytheme")
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
