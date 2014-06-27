@@ -14,6 +14,11 @@ class Loader(Loader):
 
         lookup = get_lookup_class().objects.get_current()
 
+        # maybe we do not have current lookup so we just do not try to handle
+        # template dir now
+        if not lookup:
+            return []
+
         if not template_dirs:
             template_dir = os.path.join(
                 BASE_FOLDER,
