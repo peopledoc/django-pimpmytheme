@@ -24,7 +24,7 @@ with the PIMPMYTHEME_GIT_REPOSITORY or in your command line as bellow:
 
     python manage.py update_themefolder_from_git --git_repository git@github.com:<you>/<your_folder>.git
 
-""" # noqa
+"""  # noqa
 
 
 GIT_IMPORT_ERROR = """To update pimpmytheme folder from a git repository you
