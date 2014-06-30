@@ -13,15 +13,15 @@ from pimpmytheme.templatetags.pimptheme import pimp
 from pimpmytheme.templatetags.pimptheme import pimp_exists
 
 
-class NoneSiteManager(object):
+class NoneLookupManager(object):
 
     def get_current(self):
         return None
 
 
-class NoneSite(object):
+class NoneLookup(object):
 
-    objects = NoneSiteManager()
+    objects = NoneLookupManager()
 
 
 project_name = settings.SETTINGS_MODULE.split(".")[0]
@@ -95,7 +95,7 @@ class TemplatetagsTestCase(TestCase):
         self.assertEqual(res, '/static/example.com/static/css/custom.less')
 
         # if no current item
-        settings.CUSTOM_THEME_LOOKUP_OBJECT = 'pimpmytheme.tests.NoneSite'
+        settings.CUSTOM_THEME_LOOKUP_OBJECT = 'pimpmytheme.tests.NoneLookup'
 
         res = pimp({}, 'css')
         self.assertEqual(res, '#')
@@ -111,7 +111,7 @@ class TemplatetagsTestCase(TestCase):
         self.assertEqual(res, '/static/example.com/static/css/custom.less')
 
         # if no current item
-        settings.CUSTOM_THEME_LOOKUP_OBJECT = 'pimpmytheme.tests.NoneSite'
+        settings.CUSTOM_THEME_LOOKUP_OBJECT = 'pimpmytheme.tests.NoneLookup'
 
         res = pimp_exists({}, 'css', filename=None)
         self.assertIsNone(res)
