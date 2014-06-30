@@ -13,6 +13,11 @@ def pimp(context, file_type, filename=None):
     if filename is None:
         filename = ""
     lookup = get_lookup_class().objects.get_current()
+
+    # lookup is not mandatory, maybe we do not have current item right now.
+    if not lookup:
+        return '#'
+
     url = "/".join(
         [getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
          "static", file_type])
@@ -55,6 +60,11 @@ def pimp_exists(context, filetype, filename=None):
     if filename is None:
         filename = ""
     lookup = get_lookup_class().objects.get_current()
+
+    # lookup is not mandatory, maybe we do not have current item right now.
+    if not lookup:
+        return
+
     path = "/".join(
         [getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
          "static", filetype, filename])

@@ -1,5 +1,6 @@
 import os
 import shutil
+
 from django.test import TestCase
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -7,6 +8,20 @@ from django.core.management import call_command
 from django.core.management.base import CommandError
 
 from pimpmytheme.management.commands import update_themefolder_from_git as ufg
+
+from pimpmytheme.templatetags.pimptheme import pimp
+from pimpmytheme.templatetags.pimptheme import pimp_exists
+
+
+class NoneLookupManager(object):
+
+    def get_current(self):
+        return None
+
+
+class NoneLookup(object):
+
+    objects = NoneLookupManager()
 
 
 project_name = settings.SETTINGS_MODULE.split(".")[0]
@@ -63,3 +78,43 @@ class SiteTestCase(TestCase):
                                     call_command,
                                     'update_themefolder_from_git', folder='.',
                                     git_repository='dummy')
+
+
+class TemplatetagsTestCase(TestCase):
+
+    def tearDown(self):
+        # restore standard behaviour
+        settings.CUSTOM_THEME_LOOKUP_OBJECT = \
+            'django.contrib.sites.models.Site'
+
+    def test_pimp(self):
+        res = pimp({}, 'css')
+        self.assertEqual(res, '/static/example.com/static/css/')
+
+        res = pimp({}, 'css', filename='custom.less')
+        self.assertEqual(res, '/static/example.com/static/css/custom.less')
+
+        # if no current item
+        settings.CUSTOM_THEME_LOOKUP_OBJECT = 'pimpmytheme.tests.NoneLookup'
+
+        res = pimp({}, 'css')
+        self.assertEqual(res, '#')
+
+        res = pimp({}, 'css', filename='custom.less')
+        self.assertEqual(res, '#')
+
+    def test_pimp_exists(self):
+        res = pimp_exists({}, 'css', filename=None)
+        self.assertEqual(res, '/static/example.com/static/css/')
+
+        res = pimp_exists({}, 'css', filename='custom.less')
+        self.assertEqual(res, '/static/example.com/static/css/custom.less')
+
+        # if no current item
+        settings.CUSTOM_THEME_LOOKUP_OBJECT = 'pimpmytheme.tests.NoneLookup'
+
+        res = pimp_exists({}, 'css', filename=None)
+        self.assertIsNone(res)
+
+        res = pimp_exists({}, 'css', filename='custom.less')
+        self.assertIsNone(res)
