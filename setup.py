@@ -4,6 +4,7 @@ from os.path import join, dirname, abspath
 import sys
 
 PY2 = sys.version_info[0] == 2
+ROOT = dirname(abspath(__file__))
 
 try:
     from setuptools import setup
@@ -14,7 +15,7 @@ except ImportError:
 def read_relative_file(filename):
     """Returns contents of the given file, whose path is supposed relative
     to this module."""
-    with open(join(dirname(abspath(__file__)), filename)) as f:
+    with open(join(ROOT, filename)) as f:
         return f.read()
 
 NAME = 'django-pimpmytheme'
