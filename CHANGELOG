@@ -5,7 +5,7 @@ This document describes changes between each past release. For information
 about future releases, check `milestones`_ and :doc:`/about/vision`.
 
 
-1.4 (unreleased)
+1.4 (2014-07-03)
 ----------------
 
 - Adds update_themefolder_from_git django command.
