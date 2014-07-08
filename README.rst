@@ -3,6 +3,7 @@ Custom Theme
 
 .. image:: https://travis-ci.org/novapost/django-pimpmytheme.png?branch=master
     :target: https://travis-ci.org/novapost/django-pimpmytheme
+
 Per client/user/whatever django template and statics theming
 
 WHY
