@@ -5,6 +5,8 @@
 *.pyc
 
 .DS_Store
+build/
+dist/
 *.egg-info/
 env
 db.sqlite3
