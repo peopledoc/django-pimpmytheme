@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from os.path import join, dirname, abspath
 import sys
 
@@ -22,7 +22,7 @@ NAME = 'django-pimpmytheme'
 DESCRIPTION = """Customise theme (css and template) on a per
 user/client/whatever basis"""
 REQUIREMENTS = [
-    'django',
+    'django<1.7',
     'django-compressor',
 ]
 __VERSION__ = read_relative_file('VERSION').strip()
