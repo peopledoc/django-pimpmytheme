@@ -63,7 +63,7 @@ per a site basis:
     CUSTOM_THEME_LOOKUP_OBJECT = "django.contrib.sites.models.Site"
     CUSTOM_THEME_LOOKUP_ATTR = "name"
 
-Then select the directory wher your customizations will be stored:
+Then select the directory where your customizations will be stored:
 
     PIMPMYTHEME_FOLDER_NAME = 'pimp_theme'
     PIMPMYTHEME_FOLDER = path.join(STATIC_ROOT, PIMPMYTHEME_FOLDER_NAME)
