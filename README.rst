@@ -63,12 +63,15 @@ per a site basis:
     CUSTOM_THEME_LOOKUP_OBJECT = "django.contrib.sites.models.Site"
     CUSTOM_THEME_LOOKUP_ATTR = "name"
 
-Then select the directory where your customizations will be stored:
+Then select the directory path where your customizations will be stored.
+It must be an absolute path.
+
+    PIMPMYTHEME_FOLDER = "/home/user/myproject/custom_statics"
+
+Then select the directory name where your assets will be copied by the
+custom filter. It will be a subfolder of django_settings.STATIC_ROOT:
 
     PIMPMYTHEME_FOLDER_NAME = 'pimp_theme'
-    PIMPMYTHEME_FOLDER = path.join(STATIC_ROOT, PIMPMYTHEME_FOLDER_NAME)
-
-This must be an absolute path and a subfolder of STATIC_ROOT.
 
 Then tell compressor to use pimpmytheme's filter to build link to your assets :
 
