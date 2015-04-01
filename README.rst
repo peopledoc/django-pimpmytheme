@@ -63,12 +63,19 @@ per a site basis:
     CUSTOM_THEME_LOOKUP_OBJECT = "django.contrib.sites.models.Site"
     CUSTOM_THEME_LOOKUP_ATTR = "name"
 
-then select the directory wher your customizations will be stored:
+Then select the directory path where your customizations will be stored.
+It must be an absolute path.
 
     PIMPMYTHEME_FOLDER = "/home/user/myproject/custom_statics"
 
-this must be an absolute path
+Then select the directory name where your assets will be copied by the
+custom filter. It will be a subfolder of django_settings.STATIC_ROOT:
 
+    PIMPMYTHEME_FOLDER_NAME = 'pimp_theme'
+
+Then tell compressor to use pimpmytheme's filter to build link to your assets :
+
+    COMPRESS_CSS_FILTERS = ['pimpmytheme.filters.CustomCssAbsoluteFilter']
 
 To create the needed folders for customization, you can run the
 management command provided by pimpmytheme:
@@ -90,6 +97,15 @@ some custom templates in it.
 the pimpmytheme template loader will first look in this directory to
 load templates files. If not found, it will fallback on the django
 template loader
+
+If your themes are in a git repo, add settings :
+
+    PIMPMYTHEME_GIT_REPOSITORY = 'git@github.com:foo/your_pimp_folders.git'
+
+and run the useful command to pull them into PIMPMYTHEME_FOLDER :
+
+    $ python manage.py update_themefolder_from_git
+
 
 TEMPLATETAG SYSTEM
 ==================
