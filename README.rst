@@ -68,14 +68,26 @@ It must be an absolute path.
 
     PIMPMYTHEME_FOLDER = "/home/user/myproject/custom_statics"
 
-Then select the directory name where your assets will be copied by the
-custom filter. It will be a subfolder of django_settings.STATIC_ROOT:
+You can stop configuration here, it will work and your static files will
+be collected in STATIC_ROOT by the collectstatic command.
+
+If you want to go further in your configuration, you can set the
+directory name where your assets will be copied by the by the collectstatic
+command. It will be a subfolder of django_settings.STATIC_ROOT:
 
     PIMPMYTHEME_FOLDER_NAME = 'pimp_theme'
 
 Then tell compressor to use pimpmytheme's filter to build link to your assets :
 
-    COMPRESS_CSS_FILTERS = ['pimpmytheme.filters.CustomCssAbsoluteFilter']
+    STATICFILES_FINDERS = (
+        "yourapp.your_finder.PrefixedFinder",
+        "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+        )
+
+    COMPRESS_CSS_FILTERS = ['pimpmytheme.filters.PrefixedCssAbsoluteFilter']
+
+COMMANDS
+========
 
 To create the needed folders for customization, you can run the
 management command provided by pimpmytheme:

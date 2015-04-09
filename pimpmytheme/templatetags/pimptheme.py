@@ -18,9 +18,12 @@ def pimp(context, file_type, filename=None):
     if not lookup:
         return '#'
 
-    url = "/".join(
-        [getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
-         "static", file_type])
+    paths = []
+    if hasattr(settings, 'PIMPMYTHEME_FOLDER_NAME'):
+        paths = [settings.PIMPMYTHEME_FOLDER_NAME, project_name]
+    paths.extend([getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
+                  "static", file_type])
+    url = "/".join(paths)
     url = static("".join([url, "/", filename]))
     return url
 
@@ -65,9 +68,12 @@ def pimp_exists(context, filetype, filename=None):
     if not lookup:
         return
 
-    path = "/".join(
-        [getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
-         "static", filetype, filename])
+    paths = []
+    if hasattr(settings, 'PIMPMYTHEME_FOLDER_NAME'):
+        paths = [settings.PIMPMYTHEME_FOLDER_NAME, project_name]
+    paths.extend([getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
+                  "static", filetype, filename])
+    path = "/".join(paths)
     if finders.find(path) is None:
         return
     return pimp(context, filetype, filename)
