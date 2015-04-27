@@ -22,7 +22,7 @@ NAME = 'django-pimpmytheme'
 DESCRIPTION = """Customise theme (css and template) on a per
 user/client/whatever basis"""
 REQUIREMENTS = [
-    'django<1.7',
+    'django',
     'django-compressor',
 ]
 __VERSION__ = read_relative_file('VERSION').strip()
