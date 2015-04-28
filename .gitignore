@@ -11,5 +11,5 @@ dist/
 env
 db.sqlite3
 .coverage
-*static
 .tox
+example/example/static/

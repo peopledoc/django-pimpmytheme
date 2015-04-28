@@ -21,6 +21,7 @@ def pimp(context, file_type, filename=None):
     paths = []
     if hasattr(settings, 'PIMPMYTHEME_FOLDER_NAME'):
         paths = [settings.PIMPMYTHEME_FOLDER_NAME, project_name]
+
     paths.extend([getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
                   "static", file_type])
     url = "/".join(paths)
