@@ -5,16 +5,16 @@ This document describes changes between each past release. For information
 about future releases, check `milestones`_ and :doc:`/about/vision`.
 
 
-1.7 (unreleased)
+1.7 (2015-06-18)
 ----------------
 
-- Nothing changed yet.
+- Add a url generator template tag for use in custom html tags
 
 
 1.6.2 (2015-04-09)
 ------------------
 
-- Nothing changed yet.
+- Django 1.7 compatible version
 
 
 1.6 (2015-04-01)
