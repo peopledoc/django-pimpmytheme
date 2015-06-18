@@ -8,6 +8,7 @@ register = template.Library()
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
+@register.simple_tag(takes_context=True)
 def pimp(context, file_type, filename=None):
 
     if filename is None:

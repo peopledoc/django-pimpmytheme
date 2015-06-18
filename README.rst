@@ -139,6 +139,7 @@ To use the templatetags first load it on the template:
 
 Then use pimp_css, pimp_js or pimp_img to load your assets :
 
+    <img src="{% pimp 'myimage.jpg'%}" alt="Hello" style="opacity:0.8;">
     {% pimp_css 'custom.css'%}
     {% pimp_js 'javascript.js'%}
     {% pimp_img 'myimage.jpg'%}
