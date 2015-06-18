@@ -10,7 +10,7 @@ from django.core.management.base import CommandError
 from pimpmytheme.management.commands import update_themefolder_from_git as ufg
 
 from pimpmytheme.templatetags.pimptheme import (pimp, pimp_css,
-                                                pimp_js, pimp_img)
+                                                pimp_js, pimp_img, pimp_url)
 from pimpmytheme.templatetags.pimptheme import pimp_exists
 
 
@@ -122,6 +122,12 @@ class TemplatetagsTestCase(TestCase):
         res = pimp_img({}, filename="custom.png")
         self.assertIn("/static/example.com/static/img/custom.png", res)
         res = pimp_img({}, filename="nonexist.png")
+        self.assertEqual(res, "")
+
+    def test_pimp_url(self):
+        res = pimp_url({}, filename="img/custom.png")
+        self.assertIn("/static/example.com/static/img/custom.png", res)
+        res = pimp_url({}, filename="nonexist.png")
         self.assertEqual(res, "")
 
     def test_pimp_exists(self):

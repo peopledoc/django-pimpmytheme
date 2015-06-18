@@ -8,9 +8,7 @@ register = template.Library()
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
 
-@register.simple_tag(takes_context=True)
 def pimp(context, file_type, filename=None):
-
     if filename is None:
         filename = ""
     lookup = get_lookup_class().objects.get_current()
@@ -18,16 +16,24 @@ def pimp(context, file_type, filename=None):
     # lookup is not mandatory, maybe we do not have current item right now.
     if not lookup:
         return '#'
-
     paths = []
     if hasattr(settings, 'PIMPMYTHEME_FOLDER_NAME'):
         paths = [settings.PIMPMYTHEME_FOLDER_NAME, project_name]
 
     paths.extend([getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
                   "static", file_type])
+    paths = filter(None, paths)  # purging list from empty items
     url = "/".join(paths)
     url = static("".join([url, "/", filename]))
     return url
+
+
+@register.simple_tag(takes_context=True, name='pimp')
+def pimp_url(context, filename=None):
+    if pimp_exists(context, '', filename=filename) is None:
+        return ''
+    else:
+        return pimp(context, '', filename)
 
 
 @register.simple_tag(takes_context=True)
