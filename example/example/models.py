@@ -7,7 +7,7 @@ class PimpSiteManager(SiteManager):
     """ Pimp Site Manager """
 
     def get_current(self, **kwargs):
-        kwargs.pop('context')
+        kwargs.pop('context', None)
         return super(PimpSiteManager, self).get_current(**kwargs)
 
 

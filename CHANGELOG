@@ -7,7 +7,7 @@ about future releases, check `milestones`_ and :doc:`/about/vision`.
 2.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Adding a template filter to determine if a pimp file exists
 
 
 2.3 (2017-05-22)
