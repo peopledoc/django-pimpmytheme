@@ -22,7 +22,7 @@ class CustomStaticStorage(FileSystemStorage):
         # app is the actual app module
         location = os.path.join(
             BASE_FOLDER, project_name
-            )
+        )
         super(CustomStaticStorage, self).__init__(location, *args, **kwargs)
 
 
