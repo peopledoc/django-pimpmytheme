@@ -126,3 +126,23 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 CUSTOM_THEME_LOOKUP_OBJECT = "django.contrib.sites.models.Site"
 CUSTOM_THEME_LOOKUP_ATTR = "name"
 PIMPMYTHEME_FOLDER = os.path.join(BASE_DIR, "pimp_theme")
+
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'oneline': {
+            'format': '%(asctime)s %(levelname)-8s %(name)s  %(message)s',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'oneline',
+        },
+    },
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['console'],
+    },
+}
