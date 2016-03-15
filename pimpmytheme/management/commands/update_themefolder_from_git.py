@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import logging
 import os
+import sys
 
 from optparse import make_option
 
@@ -7,6 +9,20 @@ from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
 
 from django.conf import settings
+try:
+    import git
+except ImportError:
+    sys.stderr.write("""To update pimpmytheme folder from a git repository you
+need to install the `gitpython` library, for example be typing the following
+command:
+
+    pip install gitpython
+
+""")
+    sys.exit(1)
+
+
+logger = logging.getLogger(__name__)
 
 
 PIMPMYTHEME_FOLDER_SETTINGS_ERROR = """To target the expected theme folder you
@@ -25,15 +41,6 @@ with the PIMPMYTHEME_GIT_REPOSITORY or in your command line as bellow:
     python manage.py update_themefolder_from_git --git_repository git@github.com:<you>/<your_folder>.git
 
 """  # noqa
-
-
-GIT_IMPORT_ERROR = """To update pimpmytheme folder from a git repository you
-need to install the `gitpython` library, for example be typing the following
-command:
-
-    pip install gitpython
-
-"""
 
 
 class Command(BaseCommand):
@@ -75,12 +82,13 @@ class Command(BaseCommand):
         if not git_repository:
             raise CommandError(PIMPMYTHEME_GIT_REPOSITORY_SETTINGS_ERROR)
 
-        # check python git lib requirement
         try:
-            import git
-        except ImportError:
-            raise CommandError(GIT_IMPORT_ERROR)
+            self.update(git_repository, folder)
+        except git.exc.GitCommandError as e:
+            logger.error("%r: \n%s", e, e.stderr)
+            raise CommandError("Failed to update folder")
 
+    def update(self, git_repository, folder):
         # git clone
         try:
             os.makedirs(folder)
