@@ -67,11 +67,11 @@ class SiteTestCase(TestCase):
 
         # dummy repo
         try:
-            import git
-            self.assertRaisesRegexp(git.GitCommandError,
-                                    'returned exit status 1',
+            self.assertRaisesRegexp(CommandError,
+                                    'Failed to update folder',
                                     call_command,
-                                    'update_themefolder_from_git', folder='.',
+                                    'update_themefolder_from_git',
+                                    folder='/tmp/pmt-test-folder-dummy',
                                     git_repository='dummy')
         except ImportError:
             self.assertRaisesRegexp(CommandError,
