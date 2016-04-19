@@ -3,6 +3,7 @@ import logging
 import os
 import sys
 
+from distutils.version import LooseVersion
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
@@ -21,11 +22,9 @@ command:
 """)
     sys.exit(1)
 
-# Ensure compat between GitPython 0.1.x, 0.2.x and GitPython 1.0.x.
-try:
-    from git.exc import GitCommandError
-except ImportError:
-    from git.errors import GitCommandError
+# Check GitPython version
+assert LooseVersion(git.__version__) >= LooseVersion('1.0.0'), \
+    'Require GitPython >= 1.0.0'
 
 
 logger = logging.getLogger(__name__)
@@ -90,7 +89,7 @@ class Command(BaseCommand):
 
         try:
             self.update(folder, git_repository)
-        except GitCommandError as e:
+        except git.exc.GitCommandError as e:
             logger.error("%r: \n%s", e, e.stderr)
             raise CommandError("Failed to update folder")
 

@@ -24,6 +24,7 @@ user/client/whatever basis"""
 REQUIREMENTS = [
     'Django<1.9',
     'django-compressor',
+    'gitpython>1.0.0',
 ]
 __VERSION__ = read_relative_file('VERSION').strip()
 
