@@ -9,6 +9,7 @@ about future releases, check `milestones`_ and :doc:`/about/vision`.
 -----------------
 
 - Ensure GitCommandError compat.
+- Ensure git repository (require GitPython > 1.0.0).
 
 
 1.9 (2016-03-17)
