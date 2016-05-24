@@ -4,6 +4,11 @@ Changelog
 This document describes changes between each past release. For information
 about future releases, check `milestones`_ and :doc:`/about/vision`.
 
+2.0rc1 (unreleased)
+-----------------
+
+- Added the possibility to do multi tenancy with request (#27)
+
 
 1.11 (unreleased)
 -----------------
