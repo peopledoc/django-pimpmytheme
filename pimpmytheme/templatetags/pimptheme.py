@@ -75,7 +75,7 @@ def pimp_exists(context, filetype, filename=None):
     # in order to determine which is the current_site.
     # Multi-tenancy related #27
     lookup = get_lookup_class().objects.get_current(
-        request=getattr(context, 'request', None),
+        getattr(context, 'request', None),
     )
 
     # lookup is not mandatory, maybe we do not have current item right now.
