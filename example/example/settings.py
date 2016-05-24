@@ -123,7 +123,7 @@ NOSE_ARGS = [
     ]
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-CUSTOM_THEME_LOOKUP_OBJECT = "django.contrib.sites.models.Site"
+CUSTOM_THEME_LOOKUP_OBJECT = "example.models.PimpSite"
 CUSTOM_THEME_LOOKUP_ATTR = "name"
 PIMPMYTHEME_FOLDER = os.path.join(BASE_DIR, "pimp_theme")
 
