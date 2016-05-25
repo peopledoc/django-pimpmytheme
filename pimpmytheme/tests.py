@@ -16,7 +16,7 @@ from pimpmytheme.templatetags.pimptheme import pimp_exists
 
 class NoneLookupManager(object):
 
-    def get_current(self):
+    def get_current(self, **kwargs):
         return None
 
 
@@ -91,7 +91,7 @@ class TemplatetagsTestCase(TestCase):
     def tearDown(self):
         # restore standard behaviour
         settings.CUSTOM_THEME_LOOKUP_OBJECT = \
-            'django.contrib.sites.models.Site'
+            'example.models.PimpSite'
 
     def test_pimp(self):
         res = pimp({}, 'css')
