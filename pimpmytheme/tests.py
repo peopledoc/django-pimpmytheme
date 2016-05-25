@@ -34,6 +34,11 @@ class SiteTestCase(TestCase):
     Ensure that, when a site is added, the folders are created too
     """
 
+    def setUp(self):
+        super(SiteTestCase, self).setUp()
+        # Clear the temporary directory created by tests.
+        shutil.rmtree("/tmp/pmt-test-folder-dummy", ignore_errors=True)
+
     def tearDown(self):
         settings.PIMPMYTHEME_FOLDER = BASE_FOLDER
 

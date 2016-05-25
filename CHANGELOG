@@ -8,7 +8,7 @@ about future releases, check `milestones`_ and :doc:`/about/vision`.
 1.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Enable the test suite to be executed locally by cleaning created temp directories (#29)
 
 
 1.10 (2016-04-20)
