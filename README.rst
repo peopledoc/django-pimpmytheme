@@ -30,41 +30,54 @@ for the current object.
 INSTALLATION
 ============
 
-    >>> pip install django-pimpmytheme
+.. code:: sh
+
+    $ pip install django-pimpmytheme
 
 CONFIGURATION
 =============
 
 Add pimpmytheme in your ``INSTALLED_APPS``:
 
-    INSTALLED_APPS = ('pimpmytheme',
-                      ...
-                      )
+.. code:: python
+
+    INSTALLED_APPS = (
+        'pimpmytheme',
+        ...
+    )
 
 Add the pimpmytheme staticfiles_finder to your ``STATICFILES_FINDERS``:
+
+.. code:: python
 
     STATICFILES_FINDERS = (
         "pimpmytheme.static_finder.CustomFinder",
         "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-        )
+    )
 
 Add the custom template loader to your ``TEMPLATE_LOADERS``:
+
+.. code:: python
 
     TEMPLATE_LOADERS = (
         'pimpmytheme.template_loader.Loader',
         'django.template.loaders.app_directories.Loader',
-        )
+    )
 
 Finaly, you need a model with the "get_current" method. get_current
 will return the object responsible for customization. For example, you
 can use the django.contrib.sites.Site model to customize your project
 per a site basis:
 
+.. code:: python
+
     CUSTOM_THEME_LOOKUP_OBJECT = "django.contrib.sites.models.Site"
     CUSTOM_THEME_LOOKUP_ATTR = "name"
 
 Then select the directory path where your customizations will be stored.
 It must be an absolute path.
+
+.. code:: python
 
     PIMPMYTHEME_FOLDER = "/home/user/myproject/custom_statics"
 
@@ -75,14 +88,18 @@ If you want to go further in your configuration, you can set the
 directory name where your assets will be copied by the by the collectstatic
 command. It will be a subfolder of django_settings.STATIC_ROOT:
 
+.. code:: python
+
     PIMPMYTHEME_FOLDER_NAME = 'pimp_theme'
 
 Then tell compressor to use pimpmytheme's filter to build link to your assets:
 
+.. code:: python
+
     STATICFILES_FINDERS = (
         "yourapp.your_finder.PrefixedFinder",
         "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-        )
+    )
 
     COMPRESS_CSS_FILTERS = ['pimpmytheme.filters.PrefixedCssAbsoluteFilter']
 
@@ -91,6 +108,8 @@ COMMANDS
 
 To create the needed folders for customization, you can run the
 management command provided by pimpmytheme:
+
+.. code:: sh
 
     $ python manage.py create_folders
 
@@ -112,9 +131,13 @@ template loader
 
 If your themes are in a git repo, add settings:
 
+.. code:: python
+
     PIMPMYTHEME_GIT_REPOSITORY = 'git@github.com:foo/your_pimp_folders.git'
 
 and run the useful command to pull them into PIMPMYTHEME_FOLDER:
+
+.. code:: sh
 
     $ python manage.py update_themefolder_from_git
 
@@ -135,9 +158,13 @@ files.
 
 To use the templatetags first load it on the template:
 
+.. code:: jinja
+
     {% load pimptheme %}
 
 Then use pimp_css, pimp_js or pimp_img to load your assets:
+
+.. code:: jinja
 
     <img src="{% pimp 'myimage.jpg'%}" alt="Hello" style="opacity:0.8;">
     {% pimp_css 'custom.css'%}
