@@ -147,5 +147,7 @@ Then use pimp_css, pimp_js or pimp_img to load your assets:
 NOTE
 ====
 
-thanks to https://github.com/leotrouvtou for helping finding the
-project name
+Thanks to `@leotrouvtou`_ for helping finding the project name.
+
+
+.. _`@leotrouvtou`: https://github.com/leotrouvtou
