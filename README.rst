@@ -4,13 +4,13 @@ Custom Theme
 .. image:: https://travis-ci.org/novapost/django-pimpmytheme.png?branch=master
     :target: https://travis-ci.org/novapost/django-pimpmytheme
 
-Per client/user/whatever django template and statics theming
+Per client/user/whatever django template and statics theming.
 
 WHY
 ===
 
 When you need to use custom template and/or styling based on a model
-in your app (Site, User, etc...).
+in your app (Site, User, etc).
 
 pimpmytheme will create a folder per "client" (a client can be a
 User, a Site or everything that implement the get_current method (see
@@ -23,7 +23,7 @@ same repository!
 How
 ===
 
-with the help of custom template loader ans static file loader,
+With the help of custom template loader ans static file loader,
 pimpmytheme load the custom template and statics files if they exists
 for the current object.
 
@@ -35,27 +35,27 @@ INSTALLATION
 CONFIGURATION
 =============
 
-add pimpmytheme in your INSTALLED_APPS :
+Add pimpmytheme in your ``INSTALLED_APPS``:
 
     INSTALLED_APPS = ('pimpmytheme',
                       ...
                       )
 
-add the pimpmytheme staticfiles_finder to your STATICFILES_FINDERS :
+Add the pimpmytheme staticfiles_finder to your ``STATICFILES_FINDERS``:
 
     STATICFILES_FINDERS = (
         "pimpmytheme.static_finder.CustomFinder",
         "django.contrib.staticfiles.finders.AppDirectoriesFinder",
         )
 
-add the custom template loader to your TEMPLATE_LOADERS:
+Add the custom template loader to your ``TEMPLATE_LOADERS``:
 
     TEMPLATE_LOADERS = (
         'pimpmytheme.template_loader.Loader',
         'django.template.loaders.app_directories.Loader',
         )
 
-finaly, you need a model with the "get_current" method. get_current
+Finaly, you need a model with the "get_current" method. get_current
 will return the object responsible for customization. For example, you
 can use the django.contrib.sites.Site model to customize your project
 per a site basis:
@@ -77,7 +77,7 @@ command. It will be a subfolder of django_settings.STATIC_ROOT:
 
     PIMPMYTHEME_FOLDER_NAME = 'pimp_theme'
 
-Then tell compressor to use pimpmytheme's filter to build link to your assets :
+Then tell compressor to use pimpmytheme's filter to build link to your assets:
 
     STATICFILES_FINDERS = (
         "yourapp.your_finder.PrefixedFinder",
@@ -94,7 +94,7 @@ management command provided by pimpmytheme:
 
     $ python manage.py create_folders
 
-inside custom_form you will get a folder named as your project
+Inside custom_form you will get a folder named as your project
 name. Inside this folder you wil get as many folder as you
 customization model objects. If you use the Site, you will get a
 example.com folder.
@@ -106,15 +106,15 @@ this file to customize your style.
 You can also create a template folder next to the static one and put
 some custom templates in it.
 
-the pimpmytheme template loader will first look in this directory to
+The pimpmytheme template loader will first look in this directory to
 load templates files. If not found, it will fallback on the django
 template loader
 
-If your themes are in a git repo, add settings :
+If your themes are in a git repo, add settings:
 
     PIMPMYTHEME_GIT_REPOSITORY = 'git@github.com:foo/your_pimp_folders.git'
 
-and run the useful command to pull them into PIMPMYTHEME_FOLDER :
+and run the useful command to pull them into PIMPMYTHEME_FOLDER:
 
     $ python manage.py update_themefolder_from_git
 
@@ -137,7 +137,7 @@ To use the templatetags first load it on the template:
 
     {% load pimptheme %}
 
-Then use pimp_css, pimp_js or pimp_img to load your assets :
+Then use pimp_css, pimp_js or pimp_img to load your assets:
 
     <img src="{% pimp 'myimage.jpg'%}" alt="Hello" style="opacity:0.8;">
     {% pimp_css 'custom.css'%}
