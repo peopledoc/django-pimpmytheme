@@ -1,5 +1,6 @@
-Custom Theme
-============
+====================
+Django Pimp My Theme
+====================
 
 .. image:: https://travis-ci.org/novapost/django-pimpmytheme.png?branch=master
     :target: https://travis-ci.org/novapost/django-pimpmytheme
