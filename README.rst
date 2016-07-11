@@ -114,13 +114,13 @@ management command provided by pimpmytheme:
     $ python manage.py create_folders
 
 Inside custom_form you will get a folder named as your project
-name. Inside this folder you wil get as many folder as you
+name. And inside this folder you wil get as many folders as you
 customization model objects. If you use the Site, you will get a
 example.com folder.
 
-Inside this folder you will find a static folder containing an empty
-custom.less file. Here for your convenience. you can start editing
-this file to customize your style.
+You will also find a static folder containing an empty custom.less file.
+Here for your convenience. you can start editing this file to customize
+your style.
 
 You can also create a template folder next to the static one and put
 some custom templates in it.
