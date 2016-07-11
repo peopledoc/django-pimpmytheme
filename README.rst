@@ -1,8 +1,9 @@
-Custom Theme
-============
+====================
+Django Pimp My Theme
+====================
 
-.. image:: https://travis-ci.org/novapost/django-pimpmytheme.png?branch=master
-    :target: https://travis-ci.org/novapost/django-pimpmytheme
+.. image:: https://travis-ci.org/novafloss/django-pimpmytheme.png?branch=master
+    :target: https://travis-ci.org/novafloss/django-pimpmytheme
 
 Per client/user/whatever django template and statics theming.
 
