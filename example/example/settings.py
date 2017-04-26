@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'pimpmytheme',
+    'example',
     'subapp',
     'compressor',
     'django_nose'
@@ -89,25 +90,33 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "example", "static")
 STATIC_URL = '/static/'
-from django.conf import global_settings
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    "pimpmytheme.context_processors.get_site",
-)
 
 SITE_ID = 1
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-    )
-
 COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
 
-TEMPLATE_LOADERS = (
-    'pimpmytheme.template_loader.Loader',
-    'django.template.loaders.app_directories.Loader',
-    )
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'OPTIONS': {
+            'context_processors': [
+                "django.contrib.auth.context_processors.auth",
+                "django.template.context_processors.request",
+                "django.template.context_processors.static",
+                "pimpmytheme.context_processors.get_site",
+            ],
+            'builtins': [
+                'django.templatetags.i18n',
+                'django.templatetags.static',
+                'django.templatetags.tz',
+            ],
+            'loaders': [
+                'pimpmytheme.template_loader.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ],
+        }
+    },
+]
 
 STATICFILES_FINDERS = (
     "pimpmytheme.static_finder.CustomFinder",
