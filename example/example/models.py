@@ -20,3 +20,4 @@ class PimpSite(models.Model):
 
     class Meta:
         db_table = 'django_site'
+        managed = False

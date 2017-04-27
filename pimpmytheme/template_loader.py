@@ -1,8 +1,13 @@
 import os
+
+from django.conf import settings
+from django.template import Origin
 from django.template.loaders.app_directories import Loader
 from django.utils._os import safe_join
-from django.conf import settings
+
 from .utils import get_lookup_class
+
+
 BASE_FOLDER = settings.PIMPMYTHEME_FOLDER
 project_name = settings.SETTINGS_MODULE.split(".")[0]
 
@@ -17,7 +22,7 @@ class Loader(Loader):
         # maybe we do not have current lookup so we just do not try to handle
         # template dir now
         if not lookup:
-            return []
+            return
 
         if not template_dirs:
             template_dir = os.path.join(
@@ -28,7 +33,11 @@ class Loader(Loader):
                 'templates')
 
         try:
-            return [safe_join(template_dir, template_name)]
+            yield Origin(
+                name=safe_join(template_dir, template_name),
+                template_name=template_name,
+                loader=self,
+            )
         except UnicodeDecodeError:
             # The template dir name was a bytestring that wasn't
             # valid UTF-8.

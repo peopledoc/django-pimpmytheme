@@ -4,7 +4,6 @@ import os
 import sys
 
 from distutils.version import LooseVersion
-from optparse import make_option
 
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
@@ -54,20 +53,15 @@ class Command(BaseCommand):
 
     help = """Clones or updates pimpmytheme folder."""
 
-    option_list = BaseCommand.option_list + (
-        make_option(
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--folder',
-            action='store',
-            dest='folder',
             help='Overrides PIMPMYTHEME_FOLDER settings value.'
-        ),
-        make_option(
+        )
+        parser.add_argument(
             '--git_repository',
-            action='store',
-            dest='git_repository',
-            help='Overrides PIMPMYTHEME_GIT_REPOSITORY settings value.'
-        ),
-    )
+            help='Overrides PIMPMYTHEME_GIT_REPOSITORY settings value.',
+        )
 
     def handle(self, *args, **options):
 
