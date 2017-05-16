@@ -23,7 +23,7 @@ DESCRIPTION = """Customise theme (css and template) on a per
 user/client/whatever basis"""
 REQUIREMENTS = [
     'Django>=1.8,<1.11',
-    'django-compressor',
+    'django-compressor>=2.1.1',
     'gitpython>1.0.0',
 ]
 __VERSION__ = read_relative_file('VERSION').strip()
