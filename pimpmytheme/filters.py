@@ -1,20 +1,16 @@
 import os
 import posixpath
-import re
 
 from django.conf import settings as django_settings
 
-from compressor.filters.css_default import CssAbsoluteFilter
-
-URL_PATTERN = re.compile(r'url\(([^\)]+)\)')
-SRC_PATTERN = re.compile(r'src=([\'"])(.+?)\1')
-SCHEMES = ('http://', 'https://', '/', 'data:')
+from compressor.filters.css_default import CssAbsoluteFilter, SCHEMES
 
 
 class PrefixedCssAbsoluteFilter(CssAbsoluteFilter):
 
     def _converter(self, matchobj, group, template):
         url = matchobj.group(group)
+
         url = url.strip(' \'"')
         if url.startswith('#'):
             return "url('%s')" % url
@@ -36,4 +32,5 @@ class PrefixedCssAbsoluteFilter(CssAbsoluteFilter):
 
         if self.has_scheme:
             full_url = "%s%s" % (self.protocol, full_url)
+
         return template % self.add_suffix(full_url)
