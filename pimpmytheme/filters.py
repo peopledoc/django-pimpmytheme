@@ -1,28 +1,28 @@
 import os
 import posixpath
-import re
 
 from django.conf import settings as django_settings
 
-from compressor.filters.css_default import CssAbsoluteFilter
-
-URL_PATTERN = re.compile(r'url\(([^\)]+)\)')
-SRC_PATTERN = re.compile(r'src=([\'"])(.+?)\1')
-SCHEMES = ('http://', 'https://', '/', 'data:')
+from compressor.filters.css_default import CssAbsoluteFilter, SCHEMES
 
 
 class PrefixedCssAbsoluteFilter(CssAbsoluteFilter):
 
     def _converter(self, matchobj, group, template):
         url = matchobj.group(group)
-        url = url.strip(' \'"')
+
+        url = url.strip()
+        wrap = '"' if url[0] == '"' else "'"
+        url = url.strip('\'"')
+
         if url.startswith('#'):
-            return "url('%s')" % url
+            return template % (wrap, url, wrap)
         elif url.startswith(SCHEMES):
-            return "url('%s')" % self.add_suffix(url)
+            return template % (wrap, self.add_suffix(url), wrap)
         full_url = posixpath.normpath('/'.join([str(self.directory_name),
                                                 url]))
 
+        # custom
         partial_url = full_url[len(self.url) + 1:]
         if not os.path.isfile(
                 os.path.join(
@@ -33,7 +33,8 @@ class PrefixedCssAbsoluteFilter(CssAbsoluteFilter):
                     django_settings.PIMPMYTHEME_FOLDER_NAME,
                     django_settings.SETTINGS_MODULE.split('.')[0]])) + 1:]))
             full_url = posixpath.normpath('/'.join([str(dir_name), url]))
+        # end custom
 
         if self.has_scheme:
             full_url = "%s%s" % (self.protocol, full_url)
-        return template % self.add_suffix(full_url)
+        return template % (wrap, self.add_suffix(full_url), wrap)
