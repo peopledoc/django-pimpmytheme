@@ -13,14 +13,18 @@ except ImportError:
 
 
 def read_relative_file(filename):
-    """Returns contents of the given file, whose path is supposed relative
-    to this module."""
+    """
+    Returns contents of the given file, whose path is supposed relative
+    to this module.
+
+    """
     with open(join(ROOT, filename)) as f:
         return f.read()
 
+
 NAME = 'django-pimpmytheme'
-DESCRIPTION = """Customise theme (css and template) on a per
-user/client/whatever basis"""
+DESCRIPTION = ("Customise theme (css and template) on a per user/client "
+               "whatever basis")
 REQUIREMENTS = [
     'Django>=1.8,<1.11',
     'django-compressor>=2.1.1',
@@ -36,8 +40,8 @@ params = dict(
     version=__VERSION__,
     long_description=read_relative_file('README.rst'),
     author='Yohann Gabory',
-    author_email='yohann.gabory@novapost.fr',
-    url='https://github.com/novapost/pimpmytheme',
+    author_email='novafloss@people-doc.com',
+    url='https://github.com/novafloss/django-pimpmytheme',
     license='MIT License',
     include_package_data=True,
     install_requires=REQUIREMENTS,
