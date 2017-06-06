@@ -1,3 +1,5 @@
+import os
+
 from django import template
 from django.conf import settings
 from pimpmytheme.utils import get_lookup_class
@@ -67,6 +69,25 @@ def pimp_img(context, filename=None):
         return mark_safe(
             """<img src="{}" />""".format(
                 pimp(context, "img", filename)))
+
+
+@register.filter
+def pimp_file_exists(filename):
+    lookup = get_lookup_class().objects.get_current()
+
+    # lookup is not mandatory, maybe we do not have current item right now.
+    if not lookup:
+        return False
+
+    if hasattr(settings, 'PIMPMYTHEME_FOLDER_NAME'):
+        path = os.path.join(settings.PIMPMYTHEME_FOLDER_NAME, project_name,
+                            getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
+                            'static', filename)
+    else:
+        path = os.path.join(getattr(lookup, settings.CUSTOM_THEME_LOOKUP_ATTR),
+                            'static', filename)
+
+    return not finders.find(path) is None
 
 
 def pimp_exists(context, filetype, filename=None):

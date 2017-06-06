@@ -11,7 +11,7 @@ from pimpmytheme.management.commands import update_themefolder_from_git as ufg
 
 from pimpmytheme.templatetags.pimptheme import (pimp, pimp_css,
                                                 pimp_js, pimp_img, pimp_url)
-from pimpmytheme.templatetags.pimptheme import pimp_exists
+from pimpmytheme.templatetags.pimptheme import pimp_exists, pimp_file_exists
 
 
 class NoneLookupManager(object):
@@ -134,6 +134,12 @@ class TemplatetagsTestCase(TestCase):
         self.assertIn("/static/example.com/static/img/custom.png", res)
         res = pimp_url({}, filename="nonexist.png")
         self.assertEqual(res, "")
+
+    def test_pimp_file_exists(self):
+        res = pimp_file_exists(filename="img/custom.png")
+        self.assertTrue(res)
+        res = pimp_file_exists(filename="nonexist.png")
+        self.assertFalse(res)
 
     def test_pimp_exists(self):
         res = pimp_exists({}, 'css', filename=None)
