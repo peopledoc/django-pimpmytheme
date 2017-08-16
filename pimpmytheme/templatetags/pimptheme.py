@@ -7,7 +7,11 @@ from django.utils.safestring import mark_safe
 from django.contrib.staticfiles import finders
 from django.templatetags.static import static
 register = template.Library()
-project_name = settings.SETTINGS_MODULE.split(".")[0]
+
+try:
+    project_name = settings.SETTINGS_MODULE.split(".")[0]
+except AttributeError:
+    project_name = settings.default_settings.SETTINGS_MODULE.split(".")[0]
 
 
 def pimp(context, file_type, filename=None):
