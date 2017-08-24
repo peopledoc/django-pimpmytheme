@@ -4,7 +4,13 @@ Changelog
 This document describes changes between each past release. For information
 about future releases, check `milestones`_ and :doc:`/about/vision`.
 
-2.5 (unreleased)
+2.6 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
+2.5 (2017-08-24)
 ----------------
 
 - Adding a template filter to determine if a pimp file exists
