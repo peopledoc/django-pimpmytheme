@@ -8,17 +8,11 @@ from compressor.filters.css_default import CssAbsoluteFilter, SCHEMES
 
 class PrefixedCssAbsoluteFilter(CssAbsoluteFilter):
 
-    def _converter(self, matchobj, group, template):
-        url = matchobj.group(group)
-
-        url = url.strip()
-        wrap = '"' if url[0] == '"' else "'"
-        url = url.strip('\'"')
-
-        if url.startswith('#'):
-            return template % (wrap, url, wrap)
+    def _converter(self, url):
+        if url.startswith(('#', 'data:')):
+            return url
         elif url.startswith(SCHEMES):
-            return template % (wrap, self.add_suffix(url), wrap)
+            return self.add_suffix(url)
         full_url = posixpath.normpath('/'.join([str(self.directory_name),
                                                 url]))
 
@@ -37,4 +31,5 @@ class PrefixedCssAbsoluteFilter(CssAbsoluteFilter):
 
         if self.has_scheme:
             full_url = "%s%s" % (self.protocol, full_url)
-        return template % (wrap, self.add_suffix(full_url), wrap)
+        full_url = self.add_suffix(full_url)
+        return self.post_process_url(full_url)

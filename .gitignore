@@ -13,3 +13,4 @@ db.sqlite3
 .coverage
 .tox
 example/example/static/
+.idea
