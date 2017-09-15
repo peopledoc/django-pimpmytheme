@@ -4,11 +4,16 @@ Changelog
 This document describes changes between each past release. For information
 about future releases, check `milestones`_ and :doc:`/about/vision`.
 
-2.6 (unreleased)
+2.7 (unreleased)
 ----------------
 
 - Nothing changed yet.
 
+
+2.6 (2017-09-14)
+----------------
+
+- Upgrade django-compressor, add tests for django 1.11 (#48).
 
 2.5 (2017-08-24)
 ----------------
