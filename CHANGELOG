@@ -8,6 +8,9 @@ about future releases, check `milestones`_ and :doc:`/about/vision`.
 ----------------
 
 - Migrate GitHub organization (#50).
+- Remove django<1.11 compat
+- Add django 2.0 support
+- Update example settings
 
 
 2.6 (2017-09-14)
