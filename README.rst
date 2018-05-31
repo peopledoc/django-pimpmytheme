@@ -56,14 +56,20 @@ Add the pimpmytheme staticfiles_finder to your ``STATICFILES_FINDERS``:
         "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     )
 
-Add the custom template loader to your ``TEMPLATE_LOADERS``:
+Add the custom template loader to your ``TEMPLATES``:
 
 .. code:: python
 
-    TEMPLATE_LOADERS = (
-        'pimpmytheme.template_loader.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )
+    TEMPLATES = [
+      {
+        ...
+        'loaders': [
+          'pimpmytheme.template_loader.Loader',
+          ...
+        ],
+        ...
+      },
+    ]
 
 Finaly, you need a model with the "get_current" method. get_current
 will return the object responsible for customization. For example, you

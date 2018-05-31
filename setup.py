@@ -26,7 +26,7 @@ NAME = 'django-pimpmytheme'
 DESCRIPTION = ("Customise theme (css and template) on a per user/client "
                "whatever basis")
 REQUIREMENTS = [
-    'Django>=1.8,<2.0',
+    'Django>=1.11,<2.1',
     'django-compressor>=2.2',
     'gitpython>1.0.0',
 ]
